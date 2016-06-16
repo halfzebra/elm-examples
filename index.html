@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="index.js"></script>
+<script>
+    var node = document.getElementById("root");
+    var app = Elm.Main.embed(node);
+
+    app.ports.output.subscribe(function () {
+        app.ports.input.send(1);
+    });
+</script>
+</body>
+</html>
