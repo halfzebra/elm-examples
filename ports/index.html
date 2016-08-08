@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Elm Ports</title>
+    <script src="index.js"></script>
 </head>
 <body>
 <div id="root"></div>
-<script src="index.js"></script>
 <script>
-    var node = document.getElementById("root");
-    var app = Elm.Main.embed(node);
+    var app = Elm.Main.embed(document.body);
 
     app.ports.output.subscribe(function () {
         app.ports.input.send(1);

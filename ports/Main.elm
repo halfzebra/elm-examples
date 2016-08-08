@@ -9,6 +9,7 @@ import Platform.Cmd exposing (Cmd)
 import Debug
 
 
+main : Program Never
 main =
     Html.program
         { init = init
@@ -75,9 +76,9 @@ update msg model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model 0, send Ask )
+    ( Model 0, sendMsg Ask )
 
 
-send : msg -> Cmd msg
-send msg =
+sendMsg : msg -> Cmd msg
+sendMsg msg =
     Task.perform identity identity (Task.succeed msg)
