@@ -11,4 +11,4 @@ subscriptions model =
         counterSub =
             Components.Counter.Subscriptions.subscriptions model.counter
     in
-        Sub.batch [ Sub.map Counter counterSub ]
+        Sub.batch [ Sub.map CounterMsg counterSub ]

@@ -1,8 +1,8 @@
-module App.Messages exposing (..)
+module App.Messages exposing (Msg(..))
 
 import Components.Counter.Messages
 
 
 type Msg
     = NoOp
-    | Counter Components.Counter.Messages.Msg
+    | CounterMsg Components.Counter.Messages.Msg

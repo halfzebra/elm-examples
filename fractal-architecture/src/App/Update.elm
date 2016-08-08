@@ -17,13 +17,11 @@ update msg model =
             NoOp ->
                 ( model, Cmd.none )
 
-            Counter counterMsg ->
+            CounterMsg counterMsg ->
                 let
                     ( counterModel, counterCmd ) =
                         Components.Counter.Update.update counterMsg model.counter
                 in
-                    ( { model
-                        | counter = counterModel
-                      }
-                    , Cmd.map Counter counterCmd
+                    ( { model | counter = counterModel }
+                    , Cmd.map CounterMsg counterCmd
                     )

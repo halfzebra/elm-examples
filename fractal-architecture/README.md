@@ -9,3 +9,12 @@ Features:
 - Usage of `Html.App.programWithFlags`
 - Uni-directional message passing to child components
 - Subscription passing of `Keyboard` messages to child components
+
+### Building the example
+
+Since this example features `Html.App.programWithFlags` usage, it is impossible to build it with [elm-reactor](https://github.com/elm-lang/elm-reactor)
+
+```sh
+$ elm-package istall -y
+$ elm-make Main.elm --output=index.js
+```

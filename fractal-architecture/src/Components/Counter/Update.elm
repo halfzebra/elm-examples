@@ -15,10 +15,10 @@ update msg model =
 
         Keydown code ->
             case code of
-                107 ->
+                38 ->
                     update Up model
 
-                109 ->
+                40 ->
                     update Down model
 
                 _ ->
