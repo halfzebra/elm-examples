@@ -12,11 +12,29 @@ import Dict
     ( a, b )
 
 
+main : Program Never
 main =
-    beginnerProgram { model = model, view = view, update = update }
+    beginnerProgram { model = init, view = view, update = update }
 
 
-model =
+
+-- MODEL
+
+
+type alias Checkbox =
+    { name : String
+    , checked : Bool
+    }
+
+
+type alias Model =
+    { name : String
+    , disruptedFields : Dict ( String, Checkbox )
+    }
+
+
+init : Model
+init =
     { name = ""
     , disruptedFields =
         Dict.fromList
@@ -36,10 +54,34 @@ model =
     }
 
 
+
+-- UPDATE
+
+
 type Msg
     = Check String Bool
 
 
+update msg model =
+    case msg of
+        Check checkboxId checked ->
+            let
+                updateRecord =
+                    Maybe.map (\checkboxData -> { checkboxData | checked = checked })
+
+                disruptedFieldsUpdated =
+                    Dict.update checkboxId
+                        updateRecord
+                        model.disruptedFields
+            in
+                { model | disruptedFields = disruptedFieldsUpdated }
+
+
+
+-- VIEW
+
+
+view : Model -> Html Msg
 view model =
     let
         checkbox ( key, data ) =
@@ -58,18 +100,3 @@ view model =
                 |> Dict.toList
                 |> List.map checkbox
             )
-
-
-update msg model =
-    case msg of
-        Check checkboxId checked ->
-            let
-                updateRecord =
-                    Maybe.map (\checkboxData -> { checkboxData | checked = checked })
-
-                disruptedFieldsUpdated =
-                    Dict.update checkboxId
-                        updateRecord
-                        model.disruptedFields
-            in
-                { model | disruptedFields = disruptedFieldsUpdated }
