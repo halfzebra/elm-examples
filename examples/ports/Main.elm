@@ -23,6 +23,10 @@ main =
 -- SUBSCRIPTIONS
 
 
+{-| Outgoing port sends an empty Tuple in this example.
+
+   Empty Tuples are called Holes.
+-}
 port output : () -> Cmd msg
 
 
@@ -79,6 +83,15 @@ init =
     ( Model 0, sendMsg Ask )
 
 
+{-| This function is running a Task, which always succeedes and always results
+    in to sendng a msg to update function.
+
+    In other words, this is a Cmd, which sends passed message.
+
+    Use cases:
+        - Emitting an action on init.
+        - Triggering an action in a child, to allow parent to intercept it.
+-}
 sendMsg : msg -> Cmd msg
 sendMsg msg =
     Task.perform identity identity (Task.succeed msg)
