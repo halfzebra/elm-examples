@@ -7,8 +7,8 @@ The key idea is self-repeating structure of it's components.
 Features:
 - Component splitting
 - Usage of `Html.App.programWithFlags`
-- Uni-directional message passing to child components
-- Subscription passing of `Keyboard` messages to child components
+- Component composition
+- [Subscription batching](examples/fractal-architecture/src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child components
 
 ### Building the example
 

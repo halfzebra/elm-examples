@@ -10,6 +10,8 @@ type alias Model =
     }
 
 
+{-| We can use abstract type if it is constructed with Elm's primitive values.
+-}
 type alias Flags =
     { dev : Bool
     , counter : Int
