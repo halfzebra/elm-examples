@@ -1,12 +1,11 @@
 port module Main exposing (..)
 
+import String
+import Debug
+import Cmd.Extra exposing (message)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.App as Html
-import String
-import Task
-import Platform.Cmd exposing (Cmd)
-import Debug
 
 
 main : Program Never
@@ -80,18 +79,11 @@ update msg model =
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model 0, sendMsg Ask )
+    {- Port communication is initialized after init is called, making it impossible to send an outgoing port message
+       upon the initialization.
 
+       The workaround is to send a message, using Cmd.Extra.message
 
-{-| This function is running a Task, which always succeedes and always results
-    in to sendng a msg to update function.
-
-    In other words, this is a Cmd, which sends passed message.
-
-    Use cases:
-        - Emitting an action on init.
-        - Triggering an action in a child, to allow parent to intercept it.
--}
-sendMsg : msg -> Cmd msg
-sendMsg msg =
-    Task.perform identity identity (Task.succeed msg)
+       This will change with future versions of Elm.
+    -}
+    ( Model 0, message Ask )

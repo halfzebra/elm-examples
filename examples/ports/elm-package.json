@@ -9,7 +9,8 @@
     "exposed-modules": [],
     "dependencies": {
         "elm-lang/core": "4.0.1 <= v < 5.0.0",
-        "elm-lang/html": "1.0.0 <= v < 2.0.0"
+        "elm-lang/html": "1.0.0 <= v < 2.0.0",
+        "shmookey/cmd-extra": "1.0.0 <= v < 2.0.0"
     },
     "elm-version": "0.17.0 <= v < 0.18.0"
 }
