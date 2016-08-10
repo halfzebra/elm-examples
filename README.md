@@ -1,4 +1,4 @@
-# Advanced examples of Elm
+# Practical examples in Elm 
 
 A collection of examples with advanced techniques for real-world Elm apps.
 
@@ -7,4 +7,4 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [JavaScript interop with Elm](examples/ports)
 - [Elm Fractal Architecture](examples/fractal-architecture)
 - [Generic update function](examples/generic-update)
-- [Parent-child communication in Elm](examples/parent-child-communication)
+- [Parent-child communication in Elm](examples/parent-child)
