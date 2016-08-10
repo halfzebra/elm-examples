@@ -10,7 +10,7 @@ Features:
 - Component composition
 - [Subscription batching](examples/fractal-architecture/src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child components
 
-### Building the example
+## Building the example
 
 Since this example features `Html.App.programWithFlags` usage, it is impossible to build it with [elm-reactor](https://github.com/elm-lang/elm-reactor)
 

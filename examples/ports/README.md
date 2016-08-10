@@ -8,7 +8,7 @@ Inspired by [Trouble Connecting Ports and Subscriptions] [question]
 
 See more on the matter in the official docs for [JavaScript Interop] [ports]
 
-### Building the example
+## Building the example
 
 Since this example features port module, it is impossible to build it with [elm-reactor](https://github.com/elm-lang/elm-reactor)
 
