@@ -14,7 +14,7 @@ type Internal
 
 
 type Outcoming
-    = Remove
+    = Submit
 
 
 type Msg
@@ -24,7 +24,7 @@ type Msg
 
 type alias Dictionary parentMsg =
     { onInternalMessage : Internal -> parentMsg
-    , onOutcomingMessage : Outcoming -> parentMsg
+    , onOutcomingMessageSubmit : parentMsg
     }
 
 
@@ -33,13 +33,13 @@ type alias Translator parentMsg =
 
 
 translator : Dictionary parentMsg -> Translator parentMsg
-translator { onInternalMessage, onOutcomingMessage } msg =
+translator { onInternalMessage, onOutcomingMessageSubmit } msg =
     case msg of
         InMsg internal ->
             onInternalMessage internal
 
-        OutMsg outcoming ->
-            onOutcomingMessage outcoming
+        OutMsg Submit ->
+            onOutcomingMessageSubmit
 
 
 update : Internal -> Model -> Model
@@ -53,5 +53,5 @@ view : Model -> Html Msg
 view model =
     div []
         [ input [ onInput (InMsg << Update), value model ] []
-        , button [ onClick (OutMsg Remove) ] [ text "Remove" ]
+        , button [ onClick (OutMsg Submit) ] [ text "Submit" ]
         ]
