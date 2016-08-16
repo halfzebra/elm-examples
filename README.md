@@ -11,3 +11,5 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [Parent-child communication with translator pattern in Elm](examples/parent-child-translator)
 - [HTTP GET with Elm](examples/http-get)
 - [Random value with user-specified seed](examples/random-user-seed)
+
+Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https://twitter.com/eduardkyvenko)
