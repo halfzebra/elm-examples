@@ -1,8 +1,8 @@
 # Elm Fractal Architecture example
 
-An example of project organisation with Fractal Architecture.
+An example of Elm project organisation with a self-resembling architecture.
 
-The key idea is self-repeating structure of it's components.
+Compose View, Update, Message, Model, Subscriptions and Commands with Fractal Architecture.
 
 Features:
 - Component splitting
