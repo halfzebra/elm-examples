@@ -1,7 +1,8 @@
-# Parent-child communication in Elm
+# Component composition in Elm
 
-This example features the simpliest way for establishing parent-child communication.
+This example features the simplest way for establishing component communication.
 
+## Motivation
 Elm implements uni-directional message passing,
 so you can not send a message directly from child to parent.
 
@@ -22,3 +23,8 @@ update msg model =
         _ ->
             ( model, Cmd.none )
 ```
+
+## More information on component composition in Elm
+For more ideas, I highly recommend watching [API Design Session - elm-autocomplete with Greg Ziegan](https://www.youtube.com/watch?v=KSuCYUqY058)
+
+[![API Design Session - elm-autocomplete with Greg Ziegan](https://img.youtube.com/vi/KSuCYUqY058/0.jpg)](https://www.youtube.com/watch?v=KSuCYUqY058)
