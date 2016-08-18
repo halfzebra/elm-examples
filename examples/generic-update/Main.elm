@@ -41,7 +41,7 @@ init : Model
 init =
     { name = ""
     , checkboxes =
-        -- We store the the state for components in a Dictionary
+        -- We store the the state for modules in a Dictionary
         Dict.fromList
             [ "advertising"
                 => { name = "Advertising"

@@ -59,7 +59,7 @@ update msg model =
     case msg of
         NameMsg childMsg ->
             case childMsg of
-                {- We have intercepted a message from child component.
+                {- We have intercepted a message from child module.
 
                    This part of the update function might be moved
                    to a separate function for better readability.

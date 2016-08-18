@@ -22,7 +22,7 @@ init =
 
 
 
--- Translator wiring for parent component.
+-- Translator wiring for parent module.
 -- Define a Record with a shape of a Dictionary from Components.Form.Field
 
 
@@ -49,7 +49,7 @@ type Msg
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        -- Run update routine for child component as usual.
+        -- Run update routine for child module as usual.
         FieldMsg inMsg ->
             { model | field = Components.Form.Field.update inMsg model.field }
 

@@ -1,6 +1,6 @@
 module Input exposing (..)
 
-{- This is an input component, which emits messages, when user types anything,
+{- This is an input module, which emits messages, when user types anything,
    focuses on it, or when focus leaves the field.
 -}
 

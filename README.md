@@ -7,8 +7,8 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [JavaScript interop with Elm](examples/ports)
 - [Elm Fractal Architecture](examples/fractal-architecture)
 - [Generic update function](examples/generic-update)
-- [Component composition in Elm](examples/component-composition)
-- [Component composition with translator in Elm](examples/component-composition-translator)
+- [Module composition in Elm](examples/module-composition)
+- [Module composition with translator in Elm](examples/module-composition-translator)
 - [HTTP GET with Elm](examples/http-get)
 - [Random value with user-specified seed](examples/random-user-seed)
 

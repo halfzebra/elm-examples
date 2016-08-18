@@ -1,6 +1,6 @@
 # Component composition in Elm with Translator pattern in Elm
 
-Example app, featuring the [Translator](https://medium.com/@alex.lew/the-translator-pattern-a-model-for-child-to-parent-communication-in-elm-f4bfaa1d3f98) for component-composition.
+Example app, featuring the [Translator](https://medium.com/@alex.lew/the-translator-pattern-a-model-for-child-to-parent-communication-in-elm-f4bfaa1d3f98) for module composition.
 
 ## Motivation
 The key takeaway of this example is that you can use the second argument of [Html.App.map](http://package.elm-lang.org/packages/elm-lang/html/1.1.0/Html-App#map) to have more control over the message flow in your top-level `update` function.
