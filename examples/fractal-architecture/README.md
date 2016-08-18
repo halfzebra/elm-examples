@@ -5,10 +5,10 @@ An example of Elm project organisation with a self-resembling architecture.
 Compose View, Update, Message, Model, Subscriptions and Commands with Fractal Architecture.
 
 Features:
-- Component splitting
+- Module splitting
 - Usage of `Html.App.programWithFlags`
-- Component composition
-- [Subscription batching](examples/fractal-architecture/src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child components
+- Module composition
+- [Subscription batching](examples/fractal-architecture/src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child modules
 
 ## Building the example
 

@@ -1,6 +1,6 @@
 module Helper exposing (..)
 
-{- This component simply shows and hides text -}
+{- This module has functions for showing and hiding the text -}
 
 import Html exposing (text, div, Html)
 
@@ -13,7 +13,7 @@ type alias Model =
 
 init : String -> ( Model, Cmd Msg )
 init text =
-    {- Returning Cmd Msg from child component is not necessary,
+    {- Returning Cmd Msg from child module is not necessary,
        and the signature of init and update function might be simplified to:
 
        String -> Model

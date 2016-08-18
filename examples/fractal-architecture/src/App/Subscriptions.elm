@@ -5,7 +5,7 @@ import App.Messages exposing (..)
 import Components.Counter.Subscriptions
 
 
-{-| This is how you can organize subscribtions from child components.
+{-| This is how you can organize subscribtions from child modules.
 -}
 subscriptions : Model -> Sub Msg
 subscriptions model =
