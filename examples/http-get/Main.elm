@@ -6,7 +6,7 @@ import Html.Attributes exposing (value)
 import Html.Events exposing (onClick, onInput)
 import Html.App exposing (program)
 import Http exposing (get, Error)
-
+import Task
 
 main : Program Never
 main =
@@ -32,13 +32,12 @@ type alias Repo =
 type alias Model =
     { query : String
     , repos : List Repo
-    , error : Maybe String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "evancz" [] Nothing, Cmd.none )
+    ( Model "evancz" [], Cmd.none )
 
 
 decoder : Decoder (List Repo)
@@ -83,7 +82,12 @@ update msg model =
             ( { model | repos = repos }, Cmd.none )
 
         ResponseFail err ->
-            ( { model | error = err }, Cmd.none )
+            case err of
+                Http.UnexpectedPayload errorMessage ->
+                    Debug.log errorMessage
+                    ( model, Cmd.none )
+                _ ->
+                    ( model, Cmd.none )
 
 
 sendGet : (Error -> a) -> (b -> a) -> String -> Decoder b -> Cmd a
