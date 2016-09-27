@@ -1,4 +1,4 @@
-# Component composition in Elm with Translator pattern in Elm
+# Module composition in Elm with Translator pattern in Elm
 
 Example app, featuring the [Translator](https://medium.com/@alex.lew/the-translator-pattern-a-model-for-child-to-parent-communication-in-elm-f4bfaa1d3f98) for module composition.
 

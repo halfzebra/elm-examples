@@ -1,4 +1,4 @@
-module Components.Form.Field exposing (..)
+module Form.Field exposing (..)
 
 import Html exposing (text, div, input, button, Html)
 import Html.Attributes exposing (value)

@@ -1,15 +1,15 @@
-module Components.Form exposing (..)
+module Form exposing (..)
 
 import Html exposing (text, Html)
 import Html.App
-import Components.Form.Field
+import Form.Field
 
 
 -- MODEL
 
 
 type alias Model =
-    { field : Components.Form.Field.Model
+    { field : Form.Field.Model
     , isSubmitted : Bool
     }
 
@@ -23,26 +23,26 @@ init =
 
 
 -- Translator wiring for parent module.
--- Define a Record with a shape of a Dictionary from Components.Form.Field
+-- Define a Record with a shape of a Dictionary from Form.Field
 
 
-fieldDictionary : Components.Form.Field.Dictionary Msg
+fieldDictionary : Form.Field.Dictionary Msg
 fieldDictionary =
     { onInternalMessage = FieldMsg
     , onOutcomingMessageSubmit = Submit
     }
 
 
-{-| Partially apply Components.Form.Field.translator function
+{-| Partially apply Form.Field.translator function
     to carry message mappings from fieldDictionary Record
 -}
-fieldTranslator : Components.Form.Field.Translator Msg
+fieldTranslator : Form.Field.Translator Msg
 fieldTranslator =
-    Components.Form.Field.translator fieldDictionary
+    Form.Field.translator fieldDictionary
 
 
 type Msg
-    = FieldMsg Components.Form.Field.Internal
+    = FieldMsg Form.Field.Internal
     | Submit
 
 
@@ -51,7 +51,7 @@ update msg model =
     case msg of
         -- Run update routine for child module as usual.
         FieldMsg inMsg ->
-            { model | field = Components.Form.Field.update inMsg model.field }
+            { model | field = Form.Field.update inMsg model.field }
 
         Submit ->
             { model | isSubmitted = True }
@@ -60,7 +60,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
     if model.isSubmitted == False then
-        Html.App.map fieldTranslator (Components.Form.Field.view model.field)
+        Html.App.map fieldTranslator (Form.Field.view model.field)
     else
         text
             """

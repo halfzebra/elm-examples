@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Html.App exposing (beginnerProgram)
-import Components.Form exposing (view, update, init)
+import Form exposing (view, update, init)
 
 
 main : Program Never
