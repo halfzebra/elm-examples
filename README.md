@@ -1,4 +1,4 @@
-# Practical examples in Elm 
+# Practical examples in Elm
 
 A collection of examples with advanced techniques for real-world Elm apps.
 
@@ -8,7 +8,7 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [Elm Fractal Architecture](examples/fractal-architecture)
 - [Generic update function](examples/generic-update)
 - [Module composition in Elm](examples/module-composition)
-- [Module composition with translator in Elm](examples/module-composition-translator)
+- [Module composition in Elm with tagger function](examples/module-composition-tagger)
 - [HTTP GET with Elm](examples/http-get)
 - [Random value with user-specified seed](examples/random-user-seed)
 
