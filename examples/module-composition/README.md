@@ -1,4 +1,4 @@
-# Component composition in Elm
+# Module composition in Elm
 
 This example features the simplest way for establishing module communication.
 
