@@ -34,6 +34,13 @@ update msg model =
             ( model, Cmd.none )
 ```
 
+## Building the example
+
+```sh
+$ elm-package istall -y
+$ elm-make Main.elm
+```
+
 ## More information on module composition in Elm
 
 For more ideas, I highly recommend watching [API Design Session - elm-autocomplete with Greg Ziegan](https://www.youtube.com/watch?v=KSuCYUqY058)
