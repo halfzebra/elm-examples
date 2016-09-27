@@ -36,9 +36,9 @@ fieldDictionary =
 {-| Partially apply Form.Field.translator function
     to carry message mappings from fieldDictionary Record
 -}
-fieldTranslator : Form.Field.Translator Msg
-fieldTranslator =
-    Form.Field.translator fieldDictionary
+fieldMessageTagger : Form.Field.Tagger Msg
+fieldMessageTagger =
+    Form.Field.tagger fieldDictionary
 
 
 type Msg
@@ -60,7 +60,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
     if model.isSubmitted == False then
-        Html.App.map fieldTranslator (Form.Field.view model.field)
+        Html.App.map fieldMessageTagger (Form.Field.view model.field)
     else
         text
             """

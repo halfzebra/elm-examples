@@ -1,6 +1,10 @@
-# Module composition in Elm with Translator pattern in Elm
+# Module composition in Elm with tagger function
 
-Example app, featuring the [Translator](https://medium.com/@alex.lew/the-translator-pattern-a-model-for-child-to-parent-communication-in-elm-f4bfaa1d3f98) for module composition.
+Example app, featuring the usage of tagger function for message mapping in view composition.
+
+The term is originated from official docs, where a function with type signature of `a -> msg` is defined as [tagger](http://package.elm-lang.org/packages/elm-lang/html/1.1.0/Html-Events#targetValue)
+
+It is also often referred as [Translator](https://medium.com/@alex.lew/the-translator-pattern-a-model-for-child-to-parent-communication-in-elm-f4bfaa1d3f98) pattern.
 
 ## Motivation
 The key takeaway of this example is that you can use the second argument of [Html.App.map](http://package.elm-lang.org/packages/elm-lang/html/1.1.0/Html-App#map) to have more control over the message flow in your top-level `update` function.

@@ -28,12 +28,12 @@ type alias Dictionary parentMsg =
     }
 
 
-type alias Translator parentMsg =
+type alias Tagger parentMsg =
     Msg -> parentMsg
 
 
-translator : Dictionary parentMsg -> Translator parentMsg
-translator { onInternalMessage, onOutcomingMessageSubmit } msg =
+tagger : Dictionary parentMsg -> Tagger parentMsg
+tagger { onInternalMessage, onOutcomingMessageSubmit } msg =
     case msg of
         InMsg internal ->
             onInternalMessage internal
