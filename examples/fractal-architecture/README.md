@@ -17,6 +17,6 @@ Since this example features `Html.App.programWithFlags` usage, it is impossible 
 You have to explicitly specify the `--output=index.js`
 
 ```sh
-$ elm-package istall -y
+$ elm-package install -y
 $ elm-make Main.elm --output=index.js
 ```

@@ -17,7 +17,7 @@ You have to explicitly specify the `--output=index.js`
 Depends on [Cmd.Extra](http://package.elm-lang.org/packages/shmookey/cmd-extra/1.0.0/Cmd-Extra)
 
 ```sh
-$ elm-package istall -y
+$ elm-package install -y
 $ elm-make Main.elm --output=index.js
 ```
 

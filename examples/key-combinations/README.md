@@ -5,6 +5,6 @@ Example with a Subscription setup for tracking pressed key combinations on keyba
 ## Building the example
 
 ```sh
-$ elm-package istall -y
+$ elm-package install -y
 $ elm-make Main.elm
 ```
