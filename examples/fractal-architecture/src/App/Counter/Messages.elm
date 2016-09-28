@@ -1,4 +1,4 @@
-module Components.Counter.Messages exposing (..)
+module App.Counter.Messages exposing (..)
 
 
 type Msg

@@ -1,7 +1,7 @@
-module Components.Counter.Update exposing (..)
+module App.Counter.Update exposing (..)
 
-import Components.Counter.Model exposing (..)
-import Components.Counter.Messages exposing (..)
+import App.Counter.Model exposing (..)
+import App.Counter.Messages exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )

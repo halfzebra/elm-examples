@@ -1,4 +1,4 @@
-module Components.Counter.Model exposing (..)
+module App.Counter.Model exposing (..)
 
 
 type alias Model =

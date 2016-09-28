@@ -1,8 +1,8 @@
-module Components.Counter.Subscriptions exposing (..)
+module App.Counter.Subscriptions exposing (..)
 
 import Keyboard
-import Components.Counter.Model exposing (..)
-import Components.Counter.Messages exposing (..)
+import App.Counter.Model exposing (..)
+import App.Counter.Messages exposing (..)
 
 
 subscriptions : Model -> Sub Msg

@@ -1,9 +1,9 @@
-module Components.Counter.View exposing (..)
+module App.Counter.View exposing (..)
 
 import Html exposing (text, div, button, Html)
 import Html.Events exposing (onClick)
-import Components.Counter.Model exposing (..)
-import Components.Counter.Messages exposing (..)
+import App.Counter.Model exposing (..)
+import App.Counter.Messages exposing (..)
 
 
 view : Model -> Html Msg

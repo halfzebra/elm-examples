@@ -1,12 +1,12 @@
 module App.Model exposing (..)
 
 import App.Messages exposing (Msg)
-import Components.Counter.Model
+import App.Counter.Model
 
 
 type alias Model =
     { dev : Bool
-    , counter : Components.Counter.Model.Model
+    , counter : App.Counter.Model.Model
     }
 
 
