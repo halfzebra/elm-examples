@@ -4,6 +4,3 @@
 elm-stuff
 # elm-repl generated files
 repl-temp-*
-
-# Compiled assets
-index.js

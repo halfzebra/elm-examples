@@ -12,5 +12,6 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [Module composition in Elm with tagger function](examples/module-composition-tagger)
 - [JavaScript interop with Elm](examples/ports)
 - [Random value with user-specified seed](examples/random-user-seed)
+- [Select2 integration in to Elm application](examples/select2-integration)
 
 Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https://twitter.com/eduardkyvenko)
