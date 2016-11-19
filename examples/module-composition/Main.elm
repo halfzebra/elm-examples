@@ -1,12 +1,11 @@
 module Main exposing (..)
 
-import Html exposing (text, div, Html)
-import Html.App exposing (program)
+import Html exposing (program, text, div, Html)
 import Input
 import Helper
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
     program
         { view = view
@@ -35,7 +34,7 @@ init =
             Input.init "John"
 
         ( helperModel, _ ) =
-            Helper.init "Please enter the name"
+            Helper.init "Please enter your name"
     in
         ( Model nameModel helperModel, Cmd.none )
 
@@ -49,8 +48,8 @@ view : Model -> Html Msg
 view model =
     div []
         [ text (model.name)
-        , Html.App.map NameMsg (Input.view model.name)
-        , Html.App.map HelperMsg (Helper.view model.helper)
+        , Html.map NameMsg (Input.view model.name)
+        , Html.map HelperMsg (Helper.view model.helper)
         ]
 
 

@@ -1,9 +1,9 @@
 module Main exposing (..)
 
 import Html exposing (div, input, text, label, Html)
-import Html.App exposing (beginnerProgram)
+import Html exposing (beginnerProgram)
 import Html.Events exposing (onCheck)
-import Html.Attributes exposing (type', checked)
+import Html.Attributes exposing (type_, checked)
 import Dict exposing (Dict)
 
 
@@ -16,7 +16,7 @@ import Dict exposing (Dict)
     ( a, b )
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
     beginnerProgram { model = init, view = view, update = update }
 
@@ -100,7 +100,7 @@ view model =
             label []
                 [ text data.name
                 , input
-                    [ type' "checkbox"
+                    [ type_ "checkbox"
                     , checked data.checked
                       -- Pass the key for accesing the state as a Message payload.
                     , onCheck (Check key)

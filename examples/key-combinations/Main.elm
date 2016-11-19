@@ -1,11 +1,10 @@
 module Main exposing (..)
 
-import Html exposing (text, Html)
-import Html.App exposing (program)
+import Html exposing (program, text, Html)
 import Keyboard exposing (KeyCode)
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
     program
         { view = view
@@ -20,8 +19,8 @@ type alias Model =
 
 
 type Msg
-    = Keydowns KeyCode
-    | Keyups KeyCode
+    = KeyDowns KeyCode
+    | ClearPressed
 
 
 init : ( Model, Cmd Msg )
@@ -32,16 +31,17 @@ init =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Keydowns code ->
+        KeyDowns code ->
             ( if List.member code model then
                 model
               else
-                model ++ [ code ]
+                code :: model
             , Cmd.none
             )
 
-        Keyups code ->
-            ( List.filter (\v -> v /= code) model, Cmd.none )
+        -- Flush the whole model on `keyup`, helps to remove not pressed keys, if focus was lost from the window.
+        ClearPressed ->
+            ( [], Cmd.none )
 
 
 view : Model -> Html Msg
@@ -52,6 +52,6 @@ view model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Keyboard.downs Keydowns
-        , Keyboard.ups Keyups
+        [ Keyboard.downs KeyDowns
+        , Keyboard.ups (always ClearPressed)
         ]
