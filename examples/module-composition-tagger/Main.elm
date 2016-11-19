@@ -1,9 +1,9 @@
 module Main exposing (..)
 
-import Html.App exposing (beginnerProgram)
-import Form exposing (view, update, init)
+import Html exposing (beginnerProgram)
+import Form exposing (view, update, init, Model, Msg)
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
     beginnerProgram { view = view, update = update, model = init }

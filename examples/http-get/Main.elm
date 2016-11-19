@@ -1,14 +1,15 @@
 module Main exposing (..)
 
-import Json.Decode exposing ((:=), int, string, Decoder)
+import Json.Decode exposing (field, int, string, Decoder)
 import Html exposing (text, div, input, button, p, Html)
 import Html.Attributes exposing (value)
 import Html.Events exposing (onClick, onInput)
-import Html.App exposing (program)
-import Http exposing (get, Error)
+import Html exposing (program)
+import Http exposing (get, Error, Response, Error(..))
 import Task
 
-main : Program Never
+
+main : Program Never Model Msg
 main =
     program
         { view = view
@@ -32,12 +33,13 @@ type alias Repo =
 type alias Model =
     { query : String
     , repos : List Repo
+    , error : Maybe String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model "evancz" [], Cmd.none )
+    ( Model "evancz" [] Nothing, Cmd.none )
 
 
 decoder : Decoder (List Repo)
@@ -47,9 +49,9 @@ decoder =
 
 repoDecoder : Decoder Repo
 repoDecoder =
-    Json.Decode.object2 Repo
-        ("id" := int)
-        ("full_name" := string)
+    Json.Decode.map2 Repo
+        (field "id" int)
+        (field "full_name" string)
 
 
 url : String -> String
@@ -59,14 +61,13 @@ url query =
 
 getRepos : String -> Cmd Msg
 getRepos query =
-    sendGet ResponseFail ResponseSuccess (url query) decoder
+    sendGet LoadRepos (url query) decoder
 
 
 type Msg
     = UpdateQuery String
     | Search
-    | ResponseSuccess (List Repo)
-    | ResponseFail Error
+    | LoadRepos (Result Http.Error (List Repo))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -78,22 +79,19 @@ update msg model =
         Search ->
             ( model, getRepos model.query )
 
-        ResponseSuccess repos ->
-            ( { model | repos = repos }, Cmd.none )
+        LoadRepos repos ->
+            case repos of
+                Ok repos ->
+                    ( { model | repos = repos }, Cmd.none )
 
-        ResponseFail err ->
-            case err of
-                Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage
-                    ( model, Cmd.none )
-                _ ->
-                    ( model, Cmd.none )
+                Err err ->
+                    Debug.crash "" err
 
 
-sendGet : (Error -> a) -> (b -> a) -> String -> Decoder b -> Cmd a
-sendGet fail success url decoder =
-    Http.get decoder url
-        |> Task.perform fail success
+sendGet : (Result Error a -> msg) -> String -> Decoder a -> Cmd msg
+sendGet msg url decoder =
+    Http.get url decoder
+        |> Http.send msg
 
 
 view : Model -> Html Msg

@@ -1,7 +1,6 @@
 module Form exposing (..)
 
 import Html exposing (text, Html)
-import Html.App
 import Form.Field
 
 
@@ -60,11 +59,11 @@ update msg model =
 view : Model -> Html Msg
 view model =
     if model.isSubmitted == False then
-        Html.App.map fieldMessageTagger (Form.Field.view model.field)
+        Html.map fieldMessageTagger (Form.Field.view model.field)
     else
         text
             """
             Congratulations!
             You have succesefuly submitted the form,
-            written in Elm using Translator pattern.
+            written in Elm using tagger.
             """

@@ -1,16 +1,14 @@
 port module Main exposing (..)
 
 import String
-import Debug
-import Cmd.Extra exposing (message)
+import Task
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.App as Html
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    Html.program
+    program
         { init = init
         , view = view
         , update = update
@@ -51,7 +49,7 @@ type alias Model =
 
 view : Model -> Html Msg
 view model =
-    Html.text (toString model.number)
+    text (toString model.number)
 
 
 
@@ -59,16 +57,12 @@ view model =
 
 
 type Msg
-    = Ask
-    | Get Int
+    = Get Int
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case (Debug.log "MESSAGE: " msg) of
-        Ask ->
-            ( model, output () )
-
         Get x ->
             ( Model x, Cmd.none )
 
@@ -79,11 +73,5 @@ update msg model =
 
 init : ( Model, Cmd Msg )
 init =
-    {- Port communication is initialized after init is called, making it impossible to send an outgoing port message
-       upon the initialization.
-
-       The workaround is to send a message, using Cmd.Extra.message
-
-       This will change with future versions of Elm.
-    -}
-    ( Model 0, message Ask )
+    {- Send a message through port upon initialization. -}
+    ( Model 0, output () )

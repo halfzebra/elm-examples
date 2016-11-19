@@ -5,7 +5,7 @@ module Input exposing (..)
 -}
 
 import Html exposing (input, Html)
-import Html.Attributes exposing (type', value)
+import Html.Attributes exposing (type_, value)
 import Html.Events exposing (onInput, onFocus, onBlur)
 
 
@@ -27,7 +27,7 @@ type Msg
 view : Model -> Html Msg
 view model =
     input
-        [ type' "text"
+        [ type_ "text"
         , onInput Update
         , onFocus Focus
         , onBlur Blur
