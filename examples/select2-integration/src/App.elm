@@ -6,8 +6,7 @@ import Dict exposing (Dict)
 
 
 type alias Model =
-    { selection : Maybe String
-    }
+    { selection : Maybe String }
 
 
 init : ( Model, Cmd Msg )
@@ -33,7 +32,8 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div
+        []
         [ text (toString model)
         , div [ id "select2-container" ] []
         ]
@@ -50,6 +50,8 @@ options =
     Dict.fromList
         [ ( "US", "United States" )
         , ( "UK", "United Kingdom" )
+        , ( "UY", "Uruguay" )
+        , ( "UZ", "Uzbekistan" )
         ]
 
 
