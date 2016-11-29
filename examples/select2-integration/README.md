@@ -1,6 +1,6 @@
-Running demo of this application is available [here](https://halfzebra.github.io/elm-examples/select2-integration/dist/)
+Running demo of this application is available [here.](https://halfzebra.github.io/elm-examples/select2-integration/dist/)
 
-This project was bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).
+This project was bootstrapped with [Create Elm App.](https://github.com/halfzebra/create-elm-app)
 
 Below you will find some information on how to perform common tasks.  
 You can find the most recent version of this guide [here](https://github.com/halfzebra/create-elm-app/blob/master/template/README.md).
@@ -8,7 +8,7 @@ You can find the most recent version of this guide [here](https://github.com/hal
 ## Building the example
 
 ```sh
-$ npm install create-elm-app -g
-$ npm install
-$ elm-app build
+$ npm install create-elm-app -g  # Install CreateElm App
+$ npm install                    # install local NPM deps
+$ elm-app build                  # Build the example
 ```
