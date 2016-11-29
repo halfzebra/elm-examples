@@ -1,3 +1,5 @@
+Running demo of this application is available [here](https://halfzebra.github.io/elm-examples/select2-integration/dist/)
+
 This project was bootstrapped with [Create Elm App](https://github.com/halfzebra/create-elm-app).
 
 Below you will find some information on how to perform common tasks.  
