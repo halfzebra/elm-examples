@@ -1,0 +1,26 @@
+{
+  "name": "elm-examples",
+  "version": "1.0.0",
+  "description": "A collection of examples with advanced techniques for real-world Elm apps.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/halfzebra/elm-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/halfzebra/elm-examples/issues"
+  },
+  "homepage": "https://github.com/halfzebra/elm-examples#readme",
+  "devDependencies": {
+    "gh-pages": "^0.12.0"
+  }
+}
