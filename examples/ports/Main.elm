@@ -20,9 +20,18 @@ main =
 -- SUBSCRIPTIONS
 
 
-{-| Outgoing port sends an empty Tuple in this example.
+{-| With an outgoing port, I want to tell JavaScript to send some value to Elm.
+    That does not require sending data to JavaScript, so I send an empty Tuple.
 
-   Empty Tuples are called Holes.
+    Note, that you can not specify the exact message type of port commands.
+
+    Both port functions can be exported and used outside of the module.
+    Since output does not emit any messages, we have type annotation definition with a generic `msg`,
+    so it's easier to use it outside of this module
+    and you don't have to use Cmd.map to re-map a non-existing message type.
+
+    The subscription as well can be used outside of this module,
+    you can use any message type to receive messages from the port.
 -}
 port output : () -> Cmd msg
 
