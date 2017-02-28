@@ -22,15 +22,32 @@ view model =
     div []
         [ button
             [ onClick PutRandomNumber ]
-            [ text "Put a random value on a stack" ]
-        , text (toString model.stack)
+            [ text "Generate random BMI data" ]
+        , div
+            []
+            (List.map (text << toString) model.stack)
         ]
 
 
 type alias Model =
     { seed : Maybe Seed
-    , stack : List Int
+    , stack : List BMI
     }
+
+
+type alias BMI =
+    { weight : Float
+    , height : Float
+    , bmi : Float
+    }
+
+
+valueGenerator : Generator BMI
+valueGenerator =
+    Random.map2
+        (\w h -> BMI w h (w / (h * h)))
+        (Random.float 60 150)
+        (Random.float 0.6 1.2)
 
 
 type Msg
@@ -44,6 +61,14 @@ seedGenerator =
         |> Random.map (Random.initialSeed)
 
 
+valueGenerator : Generator BMI
+valueGenerator =
+    Random.map2
+        (\w h -> BMI w h (w / (h * h)))
+        (Random.float 60 150)
+        (Random.float 0.6 1.2)
+
+
 update msg model =
     case msg of
         Update seed ->
@@ -52,14 +77,19 @@ update msg model =
 
         PutRandomNumber ->
             let
-                -- In case if seed was present, new model will contain the new value and a new state for the seed.
+                {- In case if seed was present, new model will contain the new value
+                   and a new state for the seed.
+                -}
                 newModel : Model
                 newModel =
                     model.seed
-                        |> Maybe.map (Random.step (Random.int 0 10))
+                        |> Maybe.map (Random.step valueGenerator)
                         |> Maybe.map
                             (\( number, seed ) ->
-                                { model | seed = Just seed, stack = number :: model.stack }
+                                { model
+                                    | seed = Just seed
+                                    , stack = number :: model.stack
+                                }
                             )
                         |> Maybe.withDefault model
             in
