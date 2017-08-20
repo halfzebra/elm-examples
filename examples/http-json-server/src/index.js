@@ -1,6 +1,4 @@
 import './main.css'
-const Elm = require('./App.elm')
+import {Main} from './Main.elm';
 
-const root = document.getElementById('root')
-
-Elm.App.embed(root)
+Main.embed(document.getElementById('root'));

@@ -1,13 +1,17 @@
-module App exposing (..)
+module Main exposing (..)
 
 import Html exposing (Html, button, div, text, input)
 import Html.Events exposing (onClick, onInput)
-import Http
+import Http exposing (Error, Body)
 import Json.Decode exposing (Decoder)
 import Json.Encode
 
 
 ---- MODEL ----
+
+
+type alias Data =
+    { content : String }
 
 
 type alias Model =
@@ -21,10 +25,6 @@ init =
     ( { data = Nothing, inputValue = "" }, Cmd.none )
 
 
-type alias Data =
-    { content : String }
-
-
 
 ---- UPDATE ----
 
@@ -33,23 +33,34 @@ decoder : Decoder Data
 decoder =
     Json.Decode.map Data (Json.Decode.field "content" Json.Decode.string)
 
-encoder inputValue = 
-    Http.jsonBody (Json.Encode.object [ ( "content", Json.Encode.string inputValue ) ])
 
-        
+encoder : String -> Body
+encoder inputValue =
+    [ ( "content", Json.Encode.string inputValue ) ]
+        |> Json.Encode.object
+        |> Http.jsonBody
+
+
 type Msg
     = Send
-    | Response (Result Http.Error Data)
+    | Response (Result Error Data)
     | InputUpdate String
     | SendData
-    | SendDataResponse (Result Http.Error Data) -- actually not the data
+    | SendDataResponse (Result Error Data)
+
+
+apiUrl : String
+apiUrl =
+    "http://localhost:3004/data"
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Send ->
-            ( model, Http.send Response (Http.get "http://localhost:3004/data" decoder) )
+            ( model
+            , Http.send Response (Http.get apiUrl decoder)
+            )
 
         Response res ->
             case res of
@@ -64,7 +75,13 @@ update msg model =
 
         SendData ->
             ( model
-            , Http.send Response (Http.post "http://localhost:3004/data" ( encoder model.inputValue ) decoder) )
+            , Http.send Response
+                (Http.post
+                    apiUrl
+                    (encoder model.inputValue)
+                    decoder
+                )
+            )
 
         SendDataResponse res ->
             case res of
@@ -83,8 +100,8 @@ view : Model -> Html Msg
 view model =
     div []
         [ div [] [ text (toString model.data) ]
-        , button [ onClick Send ] [ text "Get the data" ]
         , input [ onInput InputUpdate ] []
+        , button [ onClick Send ] [ text "Get the data" ]
         , button [ onClick SendData ] [ text "Send data to server" ]
         ]
 
