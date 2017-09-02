@@ -13,5 +13,6 @@ A collection of examples with advanced techniques for real-world Elm apps.
 - [JavaScript interop with Elm](examples/ports)
 - [Random value with user-specified seed](examples/random-user-seed)
 - [Select2 integration in to Elm application](examples/select2-integration)
+- [Elm SPA using Create Elm App](https://github.com/halfzebra/elm-spa-example)
 
 Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https://twitter.com/eduardkyvenko)
