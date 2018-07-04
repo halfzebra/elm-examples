@@ -8,7 +8,7 @@ Features:
 - Module splitting
 - Usage of `Html.App.programWithFlags`
 - Module composition
-- [Subscription batching](examples/fractal-architecture/src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child modules
+- [Subscription batching](src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child modules
 
 ## Building the example
 
