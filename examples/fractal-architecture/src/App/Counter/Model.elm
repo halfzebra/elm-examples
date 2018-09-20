@@ -1,4 +1,4 @@
-module App.Counter.Model exposing (..)
+module App.Counter.Model exposing (Model, init)
 
 
 type alias Model =

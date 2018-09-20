@@ -6,10 +6,9 @@ to [List user repositories](https://developer.github.com/v3/repos/#list-user-rep
 ## Building the example
 
 ```sh
-$ elm-package install -y
-$ elm-make Main.elm
+$ elm make Main.elm
 
 or alternatively
 
-$ elm-reactor
+$ elm reactor
 ```

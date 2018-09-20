@@ -1,7 +1,7 @@
-module App.Model exposing (..)
+module App.Model exposing (Flags, Model, init)
 
-import App.Messages exposing (Msg)
 import App.Counter.Model
+import App.Messages exposing (Msg)
 
 
 type alias Model =
@@ -24,4 +24,4 @@ init flags =
         { dev, counter } =
             flags
     in
-        ( Model dev counter, Cmd.none )
+    ( Model dev counter, Cmd.none )

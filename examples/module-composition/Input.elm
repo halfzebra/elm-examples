@@ -1,12 +1,12 @@
-module Input exposing (..)
+module Input exposing (Model, Msg(..), init, update, view)
 
 {- This is an input module, which emits messages, when user types anything,
    focuses on it, or when focus leaves the field.
 -}
 
-import Html exposing (input, Html)
+import Html exposing (Html, input)
 import Html.Attributes exposing (type_, value)
-import Html.Events exposing (onInput, onFocus, onBlur)
+import Html.Events exposing (onBlur, onFocus, onInput)
 
 
 type alias Model =

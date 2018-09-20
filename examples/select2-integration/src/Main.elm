@@ -1,9 +1,9 @@
-module Main exposing (..)
+module Main exposing (main)
 
 import App exposing (..)
-import Html exposing (program)
+import Browser
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program { view = view, init = init, update = update, subscriptions = subscriptions }
+    Browser.element { view = view, init = \() -> init, update = update, subscriptions = subscriptions }

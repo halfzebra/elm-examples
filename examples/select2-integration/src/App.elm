@@ -1,12 +1,22 @@
-port module App exposing (..)
+port module App exposing (Model, Msg(..), init, input, options, output, subscriptions, update, view)
 
-import Html exposing (Html, text, div)
-import Html.Attributes exposing (id)
 import Dict exposing (Dict)
+import Html exposing (Html, div, text)
+import Html.Attributes exposing (id)
 
 
 type alias Model =
     { selection : Maybe String }
+
+
+modelToString : Model -> String
+modelToString model =
+    case model.selection of
+        Nothing ->
+            "Nothing"
+
+        Just s ->
+            "Just " ++ s
 
 
 init : ( Model, Cmd Msg )
@@ -27,14 +37,14 @@ update msg model =
                 option =
                     Dict.get val options
             in
-                ( { model | selection = option }, Cmd.none )
+            ( { model | selection = option }, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     div
         []
-        [ text (toString model)
+        [ text (modelToString model)
         , div [ id "select2-container" ] []
         ]
 

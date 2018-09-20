@@ -1,24 +1,15 @@
-module Main exposing (..)
+module Main exposing (Checkbox, Model, Msg(..), init, main, update, view)
 
-import Html exposing (div, input, text, label, Html)
-import Html exposing (beginnerProgram)
-import Html.Events exposing (onCheck)
-import Html.Attributes exposing (type_, checked)
+import Browser
 import Dict exposing (Dict)
+import Html exposing (Html, div, input, label, text)
+import Html.Attributes exposing (checked, type_)
+import Html.Events exposing (onCheck)
 
 
-{-| This is a custom infix operator I use as a helper for creating Tuples.
-
-   Instead of (a, b) I can use a => b, which looks much better in Dictionaries.
--}
-(=>) : a -> b -> ( a, b )
-(=>) a b =
-    ( a, b )
-
-
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    beginnerProgram { model = init, view = view, update = update }
+    Browser.sandbox { init = init, view = view, update = update }
 
 
 
@@ -43,18 +34,21 @@ init =
     , checkboxes =
         -- We store the the state for modules in a Dictionary
         Dict.fromList
-            [ "advertising"
-                => { name = "Advertising"
-                   , checked = False
-                   }
-            , "travel"
-                => { name = "Travel"
-                   , checked = False
-                   }
-            , "utilities"
-                => { name = "Utilities"
-                   , checked = False
-                   }
+            [ ( "advertising"
+              , { name = "Advertising"
+                , checked = False
+                }
+              )
+            , ( "travel"
+              , { name = "Travel"
+                , checked = False
+                }
+              )
+            , ( "utilities"
+              , { name = "Utilities"
+                , checked = False
+                }
+              )
             ]
     }
 
@@ -86,7 +80,7 @@ update msg model =
                         updateRecord
                         model.checkboxes
             in
-                { model | checkboxes = checkboxesUpdated }
+            { model | checkboxes = checkboxesUpdated }
 
 
 
@@ -102,14 +96,15 @@ view model =
                 , input
                     [ type_ "checkbox"
                     , checked data.checked
-                      -- Pass the key for accesing the state as a Message payload.
+
+                    -- Pass the key for accesing the state as a Message payload.
                     , onCheck (Check key)
                     ]
                     []
                 ]
     in
-        div []
-            (model.checkboxes
-                |> Dict.toList
-                |> List.map checkbox
-            )
+    div []
+        (model.checkboxes
+            |> Dict.toList
+            |> List.map checkbox
+        )

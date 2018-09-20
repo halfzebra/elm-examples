@@ -6,17 +6,16 @@ Compose View, Update, Message, Model, Subscriptions and Commands with Fractal Ar
 
 Features:
 - Module splitting
-- Usage of `Html.App.programWithFlags`
+- Usage of `Browser.element`
 - Module composition
 - [Subscription batching](src/App/Subscriptions.elm) for subscribing to `Keyboard` messages from child modules
 
 ## Building the example
 
-Since this example features `Html.App.programWithFlags` usage, it is impossible to build it with [elm-reactor](https://github.com/elm-lang/elm-reactor)
+Since this example features `Browser.element` usage, it is impossible to build it with `elm reactor`.
 
 You have to explicitly specify the `--output=index.js`
 
 ```sh
-$ elm-package install -y
-$ elm-make Main.elm --output=index.js
+$ elm make src/Main.elm --output=index.js
 ```

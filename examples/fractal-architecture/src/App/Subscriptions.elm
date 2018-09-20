@@ -1,8 +1,8 @@
-module App.Subscriptions exposing (..)
+module App.Subscriptions exposing (subscriptions)
 
-import App.Model exposing (Model)
-import App.Messages exposing (..)
 import App.Counter.Subscriptions
+import App.Messages exposing (..)
+import App.Model exposing (Model)
 
 
 {-| This is how you can organize subscribtions from child modules.
@@ -13,4 +13,4 @@ subscriptions model =
         counterSub =
             App.Counter.Subscriptions.subscriptions model.counter
     in
-        Sub.batch [ Sub.map CounterMsg counterSub ]
+    Sub.batch [ Sub.map CounterMsg counterSub ]

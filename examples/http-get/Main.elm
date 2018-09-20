@@ -1,19 +1,21 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), Repo, decoder, getRepos, init, main, repoDecoder, sendGet, subscriptions, update, url, view)
 
-import Json.Decode exposing (field, int, string, Decoder)
-import Html exposing (text, div, input, button, p, Html)
+import Browser
+import Debug
+import Html exposing (Html, button, div, input, p, text)
 import Html.Attributes exposing (value)
 import Html.Events exposing (onClick, onInput)
-import Html exposing (program)
-import Http exposing (get, Error, Response, Error(..))
+import Http exposing (Error(..), Response, get)
+import Json.Decode exposing (Decoder, field, int, string)
 import Task
+import Url.Builder as Url
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
+    Browser.element
         { view = view
-        , init = init
+        , init = \() -> init
         , update = update
         , subscriptions = subscriptions
         }
@@ -33,7 +35,7 @@ type alias Repo =
 type alias Model =
     { query : String
     , repos : List Repo
-    , error : Maybe String
+    , error : Maybe Error
     }
 
 
@@ -56,7 +58,7 @@ repoDecoder =
 
 url : String -> String
 url query =
-    "https://api.github.com/users/" ++ query ++ "/repos"
+    Url.crossOrigin "https://api.github.com" [ "users", query, "repos" ] []
 
 
 getRepos : String -> Cmd Msg
@@ -79,18 +81,18 @@ update msg model =
         Search ->
             ( model, getRepos model.query )
 
-        LoadRepos repos ->
-            case repos of
+        LoadRepos maybeRepos ->
+            case maybeRepos of
                 Ok repos ->
                     ( { model | repos = repos }, Cmd.none )
 
                 Err err ->
-                    Debug.crash "" err
+                    ( { model | repos = [], error = Just err }, Cmd.none )
 
 
 sendGet : (Result Error a -> msg) -> String -> Decoder a -> Cmd msg
-sendGet msg url decoder =
-    Http.get url decoder
+sendGet msg theUrl theDecoder =
+    Http.get theUrl theDecoder
         |> Http.send msg
 
 
@@ -104,4 +106,12 @@ view model =
         , div
             []
             (List.map (\{ full_name } -> p [] [ text full_name ]) model.repos)
+        , text
+            (case model.error of
+                Nothing ->
+                    ""
+
+                Just error ->
+                    "Error: " ++ Debug.toString error
+            )
         ]

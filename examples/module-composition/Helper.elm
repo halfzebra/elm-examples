@@ -1,8 +1,8 @@
-module Helper exposing (..)
+module Helper exposing (Model, Msg(..), init, update, view)
 
 {- This module has functions for showing and hiding the text -}
 
-import Html exposing (text, div, Html)
+import Html exposing (Html, div, text)
 
 
 type alias Model =
@@ -33,6 +33,7 @@ view : Model -> Html Msg
 view model =
     if model.visible == True then
         div [] [ text model.text ]
+
     else
         text ""
 

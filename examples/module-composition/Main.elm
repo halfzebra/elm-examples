@@ -1,15 +1,16 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
 
-import Html exposing (program, text, div, Html)
-import Input
+import Browser
 import Helper
+import Html exposing (Html, div, text)
+import Input
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
+    Browser.element
         { view = view
-        , init = init
+        , init = \() -> init
         , update = update
         , subscriptions = subscriptions
         }
@@ -36,7 +37,7 @@ init =
         ( helperModel, _ ) =
             Helper.init "Please enter your name"
     in
-        ( Model nameModel helperModel, Cmd.none )
+    ( Model nameModel helperModel, Cmd.none )
 
 
 type Msg
@@ -47,7 +48,7 @@ type Msg
 view : Model -> Html Msg
 view model =
     div []
-        [ text (model.name)
+        [ text model.name
         , Html.map NameMsg (Input.view model.name)
         , Html.map HelperMsg (Helper.view model.helper)
         ]
@@ -75,15 +76,15 @@ update msg model =
                         ( nameModel, nameCmd ) =
                             Input.update childMsg model.name
                     in
-                        ( { model | name = nameModel }
-                        , Cmd.map NameMsg nameCmd
-                        )
+                    ( { model | name = nameModel }
+                    , Cmd.map NameMsg nameCmd
+                    )
 
         HelperMsg childMsg ->
             let
                 ( helperModel, helperCmd ) =
                     Helper.update childMsg model.helper
             in
-                ( { model | helper = helperModel }
-                , Cmd.map HelperMsg helperCmd
-                )
+            ( { model | helper = helperModel }
+            , Cmd.map HelperMsg helperCmd
+            )

@@ -1,10 +1,13 @@
-module Main exposing (..)
+module Main exposing (Data, Model, Msg(..), apiUrl, decoder, encoder, init, main, update, view)
 
-import Html exposing (Html, button, div, text, input)
+import Browser
+import Debug
+import Html exposing (Html, button, div, input, text)
 import Html.Events exposing (onClick, onInput)
-import Http exposing (Error, Body)
+import Http exposing (Body, Error)
 import Json.Decode exposing (Decoder)
 import Json.Encode
+
 
 
 ---- MODEL ----
@@ -99,7 +102,7 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ div [] [ text (toString model.data) ]
+        [ div [] [ text (Debug.toString model.data) ]
         , input [ onInput InputUpdate ] []
         , button [ onClick Send ] [ text "Get the data" ]
         , button [ onClick SendData ] [ text "Send data to server" ]
@@ -110,11 +113,11 @@ view model =
 ---- PROGRAM ----
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    Html.program
+    Browser.element
         { view = view
-        , init = init
+        , init = \() -> init
         , update = update
         , subscriptions = \_ -> Sub.none
         }

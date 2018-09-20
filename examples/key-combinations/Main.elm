@@ -1,25 +1,32 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
 
-import Html exposing (program, text, Html)
-import Keyboard exposing (KeyCode)
+import Browser
+import Browser.Events as Events
+import Debug
+import Html exposing (Html, text)
+import Json.Decode as Decode
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
+    Browser.element
         { view = view
-        , init = init
+        , init = \() -> init
         , subscriptions = subscriptions
         , update = update
         }
 
 
+
+-- See https://github.com/elm/browser/blob/1.0.0/notes/keyboard.md
+
+
 type alias Model =
-    List KeyCode
+    List String
 
 
 type Msg
-    = KeyDowns KeyCode
+    = KeyDowns String
     | ClearPressed
 
 
@@ -34,6 +41,7 @@ update msg model =
         KeyDowns code ->
             ( if List.member code model then
                 model
+
               else
                 code :: model
             , Cmd.none
@@ -46,12 +54,17 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    text (toString model)
+    text (Debug.toString model)
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        [ Keyboard.downs KeyDowns
-        , Keyboard.ups (always ClearPressed)
+        [ Events.onKeyDown (Decode.map KeyDowns keyDecoder)
+        , Events.onKeyUp (Decode.succeed ClearPressed)
         ]
+
+
+keyDecoder : Decode.Decoder String
+keyDecoder =
+    Decode.field "key" Decode.string

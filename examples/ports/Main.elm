@@ -1,15 +1,16 @@
-port module Main exposing (..)
+port module Main exposing (Model, Msg(..), init, input, main, output, subscriptions, update, view)
 
-import String
-import Task
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import String
+import Task
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    program
-        { init = init
+    Browser.element
+        { init = \() -> init
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -21,7 +22,7 @@ main =
 
 
 {-| With an outgoing port, I want to tell JavaScript to send some value to Elm.
-    That does not require sending data to JavaScript, so I send an empty Tuple.
+That does not require sending data to JavaScript, so I send an empty Tuple.
 
     Note, that you can not specify the exact message type of port commands.
 
@@ -32,6 +33,7 @@ main =
 
     The subscription as well can be used outside of this module,
     you can use any message type to receive messages from the port.
+
 -}
 port output : () -> Cmd msg
 
@@ -58,7 +60,7 @@ type alias Model =
 
 view : Model -> Html Msg
 view model =
-    text (toString model.number)
+    text (String.fromInt model.number)
 
 
 
@@ -71,7 +73,7 @@ type Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case (Debug.log "MESSAGE: " msg) of
+    case Debug.log "MESSAGE: " msg of
         Get x ->
             ( Model x, Cmd.none )
 
