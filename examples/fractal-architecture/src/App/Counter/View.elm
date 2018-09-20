@@ -1,9 +1,10 @@
-module App.Counter.View exposing (..)
+module App.Counter.View exposing (view)
 
-import Html exposing (text, div, button, Html)
-import Html.Events exposing (onClick)
-import App.Counter.Model exposing (..)
 import App.Counter.Messages exposing (..)
+import App.Counter.Model exposing (..)
+import Debug
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
 
 
 view : Model -> Html Msg
@@ -11,6 +12,6 @@ view model =
     div
         []
         [ button [ onClick Up ] [ text "+" ]
-        , text (Basics.toString model)
+        , text (Debug.toString model)
         , button [ onClick Down ] [ text "-" ]
         ]

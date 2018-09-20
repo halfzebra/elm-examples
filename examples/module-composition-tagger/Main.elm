@@ -1,9 +1,9 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html exposing (beginnerProgram)
-import Form exposing (view, update, init, Model, Msg)
+import Browser
+import Form exposing (Model, Msg, init, update, view)
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    beginnerProgram { view = view, update = update, model = init }
+    Browser.sandbox { view = view, update = update, init = init }

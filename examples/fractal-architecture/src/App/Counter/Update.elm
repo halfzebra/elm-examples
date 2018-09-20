@@ -1,7 +1,7 @@
-module App.Counter.Update exposing (..)
+module App.Counter.Update exposing (update)
 
-import App.Counter.Model exposing (..)
 import App.Counter.Messages exposing (..)
+import App.Counter.Model exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -15,10 +15,10 @@ update msg model =
 
         Keydown code ->
             case code of
-                38 ->
+                "ArrowUp" ->
                     update Up model
 
-                40 ->
+                "ArrowDown" ->
                     update Down model
 
                 _ ->

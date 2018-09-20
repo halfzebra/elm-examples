@@ -7,6 +7,5 @@ This approach is useful, when having many instances of child modules in applicat
 ## Building the example
 
 ```sh
-$ elm-package install -y
-$ elm-make Main.elm
+$ elm make Main.elm
 ```

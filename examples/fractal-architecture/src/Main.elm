@@ -1,16 +1,16 @@
-module Main exposing (..)
+module Main exposing (main)
 
-import Html exposing (programWithFlags)
-import App.Model exposing (init, Model, Flags)
 import App.Messages exposing (Msg)
+import App.Model exposing (Flags, Model, init)
+import App.Subscriptions exposing (subscriptions)
 import App.Update exposing (update)
 import App.View exposing (view)
-import App.Subscriptions exposing (subscriptions)
+import Browser
 
 
 main : Program Flags Model Msg
 main =
-    programWithFlags
+    Browser.element
         { init = init
         , update = update
         , view = view

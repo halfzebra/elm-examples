@@ -1,7 +1,8 @@
-module Form exposing (..)
+module Form exposing (Model, Msg(..), fieldDictionary, fieldMessageTagger, init, update, view)
 
-import Html exposing (text, Html)
 import Form.Field
+import Html exposing (Html, text)
+
 
 
 -- MODEL
@@ -33,7 +34,7 @@ fieldDictionary =
 
 
 {-| Partially apply Form.Field.translator function
-    to carry message mappings from fieldDictionary Record
+to carry message mappings from fieldDictionary Record
 -}
 fieldMessageTagger : Form.Field.Tagger Msg
 fieldMessageTagger =
@@ -60,10 +61,11 @@ view : Model -> Html Msg
 view model =
     if model.isSubmitted == False then
         Html.map fieldMessageTagger (Form.Field.view model.field)
+
     else
         text
             """
             Congratulations!
-            You have succesefuly submitted the form,
+            You have succesxfully submitted the form,
             written in Elm using tagger.
             """

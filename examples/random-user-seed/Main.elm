@@ -1,9 +1,11 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), generator, init, main, update, view)
 
-import Html exposing (beginnerProgram, text, div, button, input, Html)
-import Html.Attributes exposing (value, placeholder)
-import Html.Events exposing (onInput, onClick)
-import Random exposing (Seed, Generator)
+import Browser
+import Debug
+import Html exposing (Html, button, div, input, text)
+import Html.Attributes exposing (placeholder, value)
+import Html.Events exposing (onClick, onInput)
+import Random exposing (Generator, Seed)
 import String
 
 
@@ -17,12 +19,13 @@ view model =
     div
         []
         (input [ value model.input, placeholder "Enter numeric seed", onInput Update ] []
-            :: case model.state of
-                Ok state ->
-                    [ button [ onClick Next ] [ text "Next" ], text (toString (Tuple.first state)) ]
+            :: (case model.state of
+                    Ok state ->
+                        [ button [ onClick Next ] [ text "Next" ], text (Debug.toString (Tuple.first state)) ]
 
-                Err msg ->
-                    [ text msg ]
+                    Err msg ->
+                        [ text msg ]
+               )
         )
 
 
@@ -39,14 +42,19 @@ update msg model =
             update CreateSeed { model | input = val }
 
         CreateSeed ->
-            let
-                seed =
-                    Result.map Random.initialSeed (String.toInt model.input)
+            case String.toInt model.input of
+                Nothing ->
+                    { model | state = Err (model.input ++ " is not a valid Int") }
 
-                newState =
-                    Result.map (Random.step (generator 10)) seed
-            in
-                { model | state = newState }
+                Just theInt ->
+                    let
+                        seed =
+                            Random.initialSeed theInt
+
+                        newState =
+                            Random.step (generator 10) seed
+                    in
+                    { model | state = Ok newState }
 
         Next ->
             { model | state = Result.map (Random.step (generator 10) << Tuple.second) model.state }
@@ -63,10 +71,10 @@ init =
     Model (Err "Seed is not available") ""
 
 
-main : Program Never Model Msg
+main : Program () Model Msg
 main =
-    beginnerProgram
+    Browser.sandbox
         { view = view
-        , model = init
+        , init = init
         , update = update
         }

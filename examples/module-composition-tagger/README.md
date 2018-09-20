@@ -46,6 +46,5 @@ view model =
 ## Building the example
 
 ```sh
-$ elm-package install -y
-$ elm-make Main.elm
+$ elm make Main.elm
 ```

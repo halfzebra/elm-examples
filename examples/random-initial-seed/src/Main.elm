@@ -1,17 +1,24 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), main, seedGenerator, update, view)
 
-import Html exposing (program, div, button, text)
+import Browser
+import Debug
+import Html exposing (button, div, text)
 import Html.Events exposing (onClick)
 import Random exposing (Generator, Seed)
 
 
+
+-- TODO
+
+
 main =
-    program
+    Browser.element
         { init =
-            ( { seed = Nothing, stack = [] }
-              -- Initial command to create independent Seed.
-            , Random.generate Update seedGenerator
-            )
+            \() ->
+                ( { seed = Nothing, stack = [] }
+                  -- Initial command to create independent Seed.
+                , Random.generate Update seedGenerator
+                )
         , view = view
         , update = update
         , subscriptions = \model -> Sub.none
@@ -23,7 +30,7 @@ view model =
         [ button
             [ onClick PutRandomNumber ]
             [ text "Put a random value on a stack" ]
-        , text (toString model.stack)
+        , text (Debug.toString model.stack)
         ]
 
 
@@ -41,7 +48,7 @@ type Msg
 seedGenerator : Generator Seed
 seedGenerator =
     Random.int Random.minInt Random.maxInt
-        |> Random.map (Random.initialSeed)
+        |> Random.map Random.initialSeed
 
 
 update msg model =
@@ -63,6 +70,6 @@ update msg model =
                             )
                         |> Maybe.withDefault model
             in
-                ( newModel
-                , Cmd.none
-                )
+            ( newModel
+            , Cmd.none
+            )

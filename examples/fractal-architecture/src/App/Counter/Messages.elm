@@ -1,7 +1,7 @@
-module App.Counter.Messages exposing (..)
+module App.Counter.Messages exposing (Msg(..))
 
 
 type Msg
     = Up
     | Down
-    | Keydown Int
+    | Keydown String

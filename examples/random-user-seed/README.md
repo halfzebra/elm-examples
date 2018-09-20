@@ -7,6 +7,5 @@ It is also possible to step through generator to get next 10 random values.
 ## Building the example
 
 ```sh
-$ elm-package install -y
-$ elm-make Main.elm
+$ elm make Main.elm
 ```

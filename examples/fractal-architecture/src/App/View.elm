@@ -1,10 +1,9 @@
-module App.View exposing (..)
+module App.View exposing (view)
 
-import Html
-import Html exposing (text, div, Html)
-import App.Model exposing (Model)
-import App.Messages exposing (..)
 import App.Counter.View
+import App.Messages exposing (..)
+import App.Model exposing (Model)
+import Html exposing (Html, div, text)
 
 
 view : Model -> Html Msg

@@ -6,9 +6,13 @@
     <script src="index.js"></script>
 </head>
 <body>
+<div id="elm" />
 <script>
 	// Pass two initialization parameters to Elm app.
-    Elm.Main.embed(document.body, { counter: 0, dev: true });
+    var app = Elm.Main.init({
+        node: document.getElementById('elm'),
+        flags: { counter: 0, dev: true }
+    });
 </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
-module Form.Field exposing (..)
+module Form.Field exposing (Dictionary, Internal(..), Model, Msg(..), Outcoming(..), Tagger, tagger, update, view)
 
-import Html exposing (text, div, input, button, Html)
+import Html exposing (Html, button, div, input, text)
 import Html.Attributes exposing (value)
 import Html.Events exposing (onClick, onInput)
 
