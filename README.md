@@ -2,7 +2,8 @@
 
 A collection of examples with advanced techniques for real-world Elm apps.
 
-Note: Please note that most of these examples haven't been updated for some time. They do not represent the sate-of-art code, but rather a general idea on how you might tackle different problems. 
+*Note:*
+Please note that most of these examples haven't been updated for some time. They do not represent the sate-of-art code, but rather a general idea on how you might tackle different problems. 
 
 ## Examples
 
