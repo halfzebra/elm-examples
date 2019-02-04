@@ -26,4 +26,4 @@ Check-out the collection of curated examples at [Awesome Elm - Examples](https:/
 
 Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https://twitter.com/eduardkyvenko)
 
-Don't be a stranger, stop by at Elm [Slack](https://elmlang.slack.com/)!
+Don't be a stranger, stop by at [Elm Slack](https://elmlang.slack.com/)!
