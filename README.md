@@ -19,3 +19,7 @@ Most of these examples haven't been updated for some time. They do not represent
 - [Elm SPA using Create Elm App](https://github.com/halfzebra/elm-spa-example)
 
 Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https://twitter.com/eduardkyvenko)
+
+# More
+
+Check-out the collection of curated examples at [Awesome Elm - Examples](https://github.com/isRuslan/awesome-elm#examples)
