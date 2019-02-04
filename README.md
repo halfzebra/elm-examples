@@ -22,4 +22,4 @@ Hit me on Twitter with ideas or requests for new examples [@eduardkyvenko](https
 
 ## I want more examples
 
-Check-out the collection of curated examples at [Awesome Elm - Examples](https://github.com/isRuslan/awesome-elm#examples)
+Check-out the collection of curated examples at [Awesome Elm - Examples](https://github.com/isRuslan/awesome-elm#examples).
